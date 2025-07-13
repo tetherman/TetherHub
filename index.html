@@ -7,176 +7,210 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 html, body {
-  margin: 0; padding: 0; height: 100%;
-  background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%);
-  font-family: 'Poppins', sans-serif;
-  color: #a060f8;
-  overflow-x: hidden;
-  position: relative;
+    margin: 0; padding: 0; height: 100%;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #a060f8;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* Top nav bar */
+body::before {
+    content: "";
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: url('https://raw.githubusercontent.com/rajatkantinandi/HTML-CSS-Starfield-Animation/master/starfield.png') repeat;
+    animation: starScroll 60s linear infinite;
+    opacity: 0.15; z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle at center, rgba(160,96,248,0.1) 0%, rgba(0,0,0,0.8) 70%);
+    z-index: 1;
+}
+
 header {
-  position: fixed; top:0; width: 100%; height: 140px;
-  background: rgba(20,10,40,0.85);
-  backdrop-filter: blur(6px);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 80px;
-  z-index: 10;
+    position: fixed; top:0; width: 100%; height: 80px;
+    background: rgba(20,10,40,0.85);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 50px;
+    z-index: 10;
+    animation: fadeSlideDown 1s ease forwards;
 }
 
 .logo {
-  height: 100px;
+    height: 50px;
 }
 
 nav a {
-  color: #c9aaff;
-  text-decoration: none;
-  margin-left: 80px;
-  font-size: 4rem;
-  font-weight: 500;
-  transition: color 0.2s ease, transform 0.2s ease;
+    color: #c9aaff;
+    text-decoration: none;
+    margin-left: 35px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
+
 nav a:hover {
-  color: #ffffff;
-  transform: scale(1.1);
+    color: #ffffff;
+    transform: scale(1.1);
 }
 
 main {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  height: calc(100vh - 140px);
-  padding-top: 140px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    height: calc(100vh - 80px);
+    padding-top: 80px;
+    animation: fadeInBody 1.2s ease forwards;
 }
 
 h1 {
-  font-size: 14rem; margin: 0;
-  font-weight: 700; color: #a060f8;
-  text-shadow: 0 0 40px #a060f8, 0 0 80px #a060f8, 0 0 120px #7d3feb;
-  animation: pulseGlow 4s infinite alternate, slideDown 1s ease forwards;
+    font-size: 5rem; margin: 0; font-weight: 700;
+    color: #a060f8;
+    text-shadow: 0 0 10px #a060f8, 0 0 20px #a060f8, 0 0 40px #7d3feb;
+    opacity: 0;
+    animation: slideDown 1s ease forwards, pulseGlow 3s infinite alternate;
+    animation-delay: 0.3s;
 }
 
 p {
-  font-size: 5rem; margin-top: 0.5em; margin-bottom: 1em;
-  color: #d3b6ff;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.5s;
+    font-size: 1.8rem; margin-top: 0.5em; margin-bottom: 2em;
+    font-weight: 400; color: #d3b6ff;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.8s;
 }
 
 .dropdown {
-  animation: fadeIn 1s ease forwards, floatUp 5s ease-in-out infinite alternate;
-  animation-delay: 1s;
+    position: relative; display: inline-block;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards, floatUp 4s ease-in-out infinite alternate;
+    animation-delay: 1.3s;
 }
 
 .dropbtn {
-  background: rgba(50, 20, 80, 0.7);
-  backdrop-filter: blur(4px);
-  color: #f5eaff;
-  padding: 30px 80px;
-  font-size: 4rem;
-  font-weight: 500;
-  border: 2px solid rgba(160, 96, 248, 0.5);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+    background: rgba(50, 20, 80, 0.6);
+    backdrop-filter: blur(4px);
+    color: #f5eaff;
+    padding: 14px 32px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: 1px solid rgba(160, 96, 248, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
+
 .dropbtn:hover {
-  background: rgba(80, 40, 120, 0.9);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(160, 96, 248, 0.4);
+    background: rgba(80, 40, 120, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(160, 96, 248, 0.4);
 }
 
 .dropdown-content {
-  display: none; position: absolute;
-  left: 50%; transform: translateX(-50%) translateY(-10px);
-  background: rgba(20, 20, 30, 0.95);
-  backdrop-filter: blur(4px);
-  min-width: 600px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.5);
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 20;
+    display: none; position: absolute;
+    left: 50%; transform: translateX(-50%) translateY(-10px);
+    background: rgba(20, 20, 30, 0.95);
+    backdrop-filter: blur(4px);
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
 }
 
 .dropdown-content.show {
-  display: block;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-content a {
-  color: #c9aaff;
-  padding: 30px 40px;
-  text-decoration: none;
-  display: block;
-  font-size: 3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  transition: background-color 0.2s ease;
+    color: #c9aaff;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.dropdown-content a:last-child { border-bottom: none; }
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
 .dropdown-content a:hover {
-  background-color: rgba(160, 96, 248, 0.1);
+    background-color: rgba(160, 96, 248, 0.1);
 }
 
 /* Animations */
 @keyframes fadeIn { to { opacity: 1; } }
 @keyframes slideDown {
-  0% { opacity: 0; transform: translateY(-30px);}
-  100% { opacity: 1; transform: translateY(0);}
+    0% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInBody { from { opacity: 0; } to { opacity: 1; } }
+@keyframes starScroll {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 10000px; }
+}
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 @keyframes pulseGlow {
-  from { text-shadow: 0 0 40px #a060f8, 0 0 80px #a060f8, 0 0 120px #7d3feb; }
-  to   { text-shadow: 0 0 80px #a060f8, 0 0 120px #a060f8, 0 0 160px #7d3feb; }
+    from { text-shadow: 0 0 10px #a060f8, 0 0 20px #a060f8, 0 0 40px #7d3feb; }
+    to { text-shadow: 0 0 20px #a060f8, 0 0 40px #a060f8, 0 0 60px #7d3feb; }
 }
 @keyframes floatUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-20px); }
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
 }
 
-/* Mobile tweaks (still look big, but scale down) */
+/* Responsive tweaks */
 @media (max-width: 768px) {
-  h1 { font-size: 14vw; }
-  p { font-size: 6vw; }
-  nav a { font-size: 6vw; margin-left: 30px; }
-  .dropbtn { font-size: 6vw; padding: 20px 40px; }
-  .dropdown-content { min-width: 80%; }
-  .dropdown-content a { font-size: 5vw; padding: 20px; }
+    h1 { font-size: 9vw; }
+    p { font-size: 4.5vw; }
+    nav a { font-size: 1rem; margin-left: 20px; }
+    .dropbtn { font-size: 1rem; padding: 10px 24px; }
 }
 </style>
 </head>
 <body>
 <header>
-  <img src="/mnt/data/9DEF4B83-0120-4B41-BE28-CAA5976953CF.png" alt="Logo" class="logo">
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Download</a>
-  </nav>
+    <img src="/mnt/data/9DEF4B83-0120-4B41-BE28-CAA5976953CF.png" alt="Logo" class="logo">
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Download</a>
+    </nav>
 </header>
 
 <main>
-  <h1>Tether</h1>
-  <p>the best script execution</p>
-  <div class="dropdown">
-    <button class="dropbtn">Download Options</button>
-    <div class="dropdown-content" id="dropdown">
-      <a href="downloads/windows-api.zip" download>Windows API</a>
-      <a href="downloads/windows-executor.zip" download>Windows Executor</a>
-      <a href="downloads/mac-executor.zip" download>Mac Executor</a>
+    <h1>Tether</h1>
+    <p>the best script execution</p>
+    <div class="dropdown">
+        <button class="dropbtn">Download Options</button>
+        <div class="dropdown-content" id="dropdown">
+            <a href="downloads/windows-api.zip" download>Windows API</a>
+            <a href="downloads/windows-executor.zip" download>Windows Executor</a>
+            <a href="downloads/mac-executor.zip" download>Mac Executor</a>
+        </div>
     </div>
-  </div>
 </main>
-
 <script>
 const dropbtn = document.querySelector('.dropbtn');
 const dropdown = document.getElementById('dropdown');
 dropbtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  dropdown.classList.toggle('show');
+    e.stopPropagation();
+    dropdown.classList.toggle('show');
 });
 window.addEventListener('click', () => {
-  dropdown.classList.remove('show');
+    dropdown.classList.remove('show');
 });
 </script>
 </body>
